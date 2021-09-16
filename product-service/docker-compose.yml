@@ -1,0 +1,25 @@
+version: '3.6'
+services:
+  ds:
+    image:  ds
+    hostname: ds
+      client:
+        serviceUrl:
+          defaultZone: http://a31ef96a7b42/eureka
+    ports:
+      - "8761:8761"
+
+  pr:
+    image:  pr
+    ports:
+      - "8086:8086"
+    links:
+      - "ds"
+
+  ps:
+    image: ps
+    ports:
+      - "8085:8085"
+    links:
+      - "ds"
+      - "pr"

@@ -1,0 +1,3 @@
+FROM adoptopenjdk/openjdk11:x86_64-alpine-jre-11.0.10_9
+copy ./target/product-service-0.0.1-SNAPSHOT.jar ps.jar
+cmd ["java", "-jar", "ps.jar"]
