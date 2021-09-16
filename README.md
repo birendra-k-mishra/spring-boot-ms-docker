@@ -1,5 +1,5 @@
 # spring-boot-ms-docker
-Spring Boot Applications | Docker | Eureka | Spring Security | H2 Memory Database | 
+Spring Boot Applications | Eureka | Spring Security | H2 Database | Docker
 
 1. This demo project contains three Spring Boot Applications :-> 
     
@@ -20,11 +20,44 @@ Spring Boot Applications | Docker | Eureka | Spring Security | H2 Memory Databas
 8. The product_id (samples were given in the requirement) which is used in this application is : BB5476, since I was able to find the response of it on the external adidas service @ https://www.adidas.co.uk/api/products/
 
 
-**Discover-Service Application: **
+# Discover-Service Application:
 
 1. This application runs on port 8672. To run it below are the commands : 
 
-    a. docker build --tag=ds:latest . (To create image. It will take some time only the first time to dowload dependencies from Maven)
+    a. cd /discover-service/
 
-    b. docker run -p 8762:8762 --name discovery-service ds:latest (To verify that app is running, please visit : http://localhost:8762/ on your host machine.
+    b. docker build --tag=ds:latest . (To create image. It will take some time only the first time to dowload dependencies from Maven)
+
+    c. docker run -p 8762:8762 --name discovery-service ds:latest (To verify that app is running, please visit : http://localhost:8762/ on your host machine.
  
+
+# Product Review Application
+
+* This app will run on port : 8086 on host machine. 
+
+* Please execute the below command from dir : 
+      a. "cd /product-review"
+      b. "docker build --tag=pr:latest ." (To create image. It will take some time only the first time to dowload dependencies from Maven) 
+      c. "docker run -e HOST=192.168.0.195 -p 8086:8086 --name product-review pr:latest" (NOTE : This IP 192.168.0.195 need to be replaced with the host ip of  the local machine.
+      
+* POSTMAN Collection : https://www.getpostman.com/collections/17ce36f312337b13def3
+
+Basic Auth Required : username=birendra passowrd=mishra
+
+
+# Product Service Application
+
+Please execute the below command from dir : 
+      a. "cd /product-service"
+      b. "docker build --tag=ps:latest ." {To create image. It will take some time only the first time to dowload dependencies from Maven}
+      c. "docker run -e HOST=192.168.0.195 -p 8085:8085 --name product-service ps:latest"  {NOTE : This IP 192.168.0.195 need to be replaced with the host ip of  the local machine}
+      
+* POSTMAN Collection : https://www.getpostman.com/collections/7ae533ba86368b48f93d
+
+* Only one endpoint. No Authentication required.
+
+
+
+
+
+
